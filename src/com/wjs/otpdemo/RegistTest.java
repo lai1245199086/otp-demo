@@ -17,14 +17,14 @@ public class RegistTest {
 		
 		UserVo vo = new UserVo();
 		vo.setUsername(userName);
-		// ´´½¨OTPĞÅÏ¢
+		// åˆ›å»ºOTPä¿¡æ¯
 		String secretBase32 = TotpUtil.getRandomSecretBase32(64);
 		vo.setOtpSk(secretBase32);
 		
-		// Í¨ÖªÓÃ»§
+		// é€šçŸ¥ç”¨æˆ·
 		sendRegisterMail(userName, email, secretBase32);
 		
-		// Êı¾İ¿âĞÂÔöÓÃ»§
+		// æ•°æ®åº“æ–°å¢ç”¨æˆ·
 		UserDao dao = new UserDao();
 		dao.add(vo);
 		
@@ -43,17 +43,17 @@ public class RegistTest {
 	        try{
 	            QRUtil.generateMatrixPic(totpProtocalString, 150, 150, filePath, fileName);
 	        }catch (Exception e){
-	            throw new RuntimeException("Éú³É¶şÎ¬ÂëÍ¼Æ¬Ê§°Ü:" + e.getMessage());
+	            throw new RuntimeException("ç”ŸæˆäºŒç»´ç å›¾ç‰‡å¤±è´¥:" + e.getMessage());
 	        }
 
 
-	        String content = "ÓÃ»§Ãû£º"+operCode+"</br>"
-	                +"ÏµÍ³Ê¹ÓÃÃÜÂë + ¶¯Ì¬¿ÚÁîË«ÒòËØÈÏÖ¤µÄ·½Ê½µÇÂ¼¡£</br>Çë°´ÒÔÏÂ·½Ê½¼¤»îÊÖ»ú¶¯Ì¬¿ÚÁî£º</br>°²×¿ÓÃ»§Çëµã»÷<a href='http://otp.aliyun.com/updates/shenfenbao.apk'>ÏÂÔØ</a>£¬"
-	                +"</br>Æ»¹ûÊÖ»úÔÚAppStoreÖĞËÑË÷¡¾Éí·İ±¦¡¿£¨Alibaba£©¡£ÏÂÔØ°²×°ºó£¬Í¨¹ıÉ¨ÃèÒÔÏÂ¶şÎ¬Âë¼¤»î¶¯Ì¬¿ÚÁî¡£</br>"
+	        String content = "ç”¨æˆ·åï¼š"+operCode+"</br>"
+	                +"ç³»ç»Ÿä½¿ç”¨å¯†ç  + åŠ¨æ€å£ä»¤åŒå› ç´ è®¤è¯çš„æ–¹å¼ç™»å½•ã€‚</br>è¯·æŒ‰ä»¥ä¸‹æ–¹å¼æ¿€æ´»æ‰‹æœºåŠ¨æ€å£ä»¤ï¼š</br>å®‰å“ç”¨æˆ·è¯·ç‚¹å‡»<a href='http://otp.aliyun.com/updates/shenfenbao.apk'>ä¸‹è½½</a>ï¼Œ"
+	                +"</br>è‹¹æœæ‰‹æœºåœ¨AppStoreä¸­æœç´¢ã€èº«ä»½å®ã€‘ï¼ˆAlibabaï¼‰ã€‚ä¸‹è½½å®‰è£…åï¼Œé€šè¿‡æ‰«æä»¥ä¸‹äºŒç»´ç æ¿€æ´»åŠ¨æ€å£ä»¤ã€‚</br>"
 	                +"<img src=\"cid:image\">";
 	        EmailBaseLogic emailBaseLogic = new EmailBaseLogic();
 //	        String to, String title, String content, String imagePath
-	        emailBaseLogic.sendWithPic(email,"ÕË»§¿ªÁ¢Í¨Öª", content, filePath + "/" + fileName);
+	        emailBaseLogic.sendWithPic(email,"è´¦æˆ·å¼€ç«‹é€šçŸ¥", content, filePath + "/" + fileName);
 	    }
 
 }

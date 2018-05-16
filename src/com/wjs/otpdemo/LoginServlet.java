@@ -43,17 +43,17 @@ public class LoginServlet extends HttpServlet {
 		UserDao dao = new UserDao();
 		UserVo vo = dao.getUserByName(userName);
 		if (null == vo) {
-			response.getWriter().println("ÓÃ»§²»´æÔÚ£¬userName:" + userName);
+			response.getWriter().println("ç”¨æˆ·ä¸å­˜åœ¨ï¼ŒuserName:" + userName);
 			return;
 		}
 		String secretBase32 = vo.getOtpSk();
 
 		if (StringUtils.isNotBlank(secretBase32)) {
 			if (!TotpUtil.verify(secretBase32, otp)) {
-				response.getWriter().println("¿ÚÁî²»ÕıÈ·£¬otp_code:" + otp);
+				response.getWriter().println("å£ä»¤ä¸æ­£ç¡®ï¼Œotp_code:" + otp);
 				return;
 			} else {
-				response.getWriter().println("<H1>µÇÂ¼³É¹¦£¬¸øÄãµãÔŞ</H1><br/><span>Ğ¡Ğ¡¿ªÔ´£¬¾èÔùÒ»¸ö£¬²»¸ºÄê»ª²»¸ºÇä</span><br/><image src='https://oss.aliyuncs.com/aliyun_id_photo_bucket/account-console-aliyun-com/suyin58_gmail_com149720850051248671.jpeg'></image>");
+				response.getWriter().println("<H1>ç™»å½•æˆåŠŸï¼Œç»™ä½ ç‚¹èµ</H1><br/><span>å°å°å¼€æºï¼Œæèµ ä¸€ä¸ªï¼Œä¸è´Ÿå¹´åä¸è´Ÿå¿</span><br/><image src='https://oss.aliyuncs.com/aliyun_id_photo_bucket/account-console-aliyun-com/suyin58_gmail_com149720850051248671.jpeg'></image>");
 				return;
 			}
 		}
